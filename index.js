@@ -6,10 +6,10 @@ app.use(express.json());
 const {MongoClient } = require("mongodb");
 
 app.post("/save",(req,res) => {
-	const url = "mongodb+srv://guptaritika183:Bd9D6r6CZ1AXcEtq@cluster0.yzb9s7n.mongodb.net/?retryWrites=true&w=majority";
+	const url = "mongodb+srv://guptaritika183:fQwzWLJffZDXC3g8@cluster0.o2tyjlk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 	const client = new MongoClient(url);
 	const db = client.db("task4employeemanagement19jan24");
-	const coll = db.collection("employees");
+	const coll = db.collection("employee");
 	const record = {"_id":req.body.id, "name": req.body.name, "salary": req.body.salary};
 	coll.insertOne(record)
 	.then(result => res.send(result))
@@ -17,20 +17,20 @@ app.post("/save",(req,res) => {
 });
 
 app.get("/read",(req,res) => {
-	const url = "mongodb+srv://guptaritika183:Bd9D6r6CZ1AXcEtq@cluster0.yzb9s7n.mongodb.net/?retryWrites=true&w=majority";
+	const url = "mongodb+srv://guptaritika183:fQwzWLJffZDXC3g8@cluster0.o2tyjlk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 	const client = new MongoClient(url);
 	const db = client.db("task4employeemanagement19jan24");
-	const coll = db.collection("employees");
+	const coll = db.collection("employee");
 	coll.find({}).toArray()
 	.then(result => res.send(result))
 	.catch(error => res.send(error));
 });
 
 app.delete("/remove",(req,res) => {
-	const url = "mongodb+srv://guptaritika183:Bd9D6r6CZ1AXcEtq@cluster0.yzb9s7n.mongodb.net/?retryWrites=true&w=majority";
+	const url = "mongodb+srv://guptaritika183:fQwzWLJffZDXC3g8@cluster0.o2tyjlk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 	const client = new MongoClient(url);
 	const db = client.db("task4employeemanagement19jan24");
-	const coll = db.collection("employees");
+	const coll = db.collection("employee");
 	const data = {"_id":req.body.id};
 	coll.deleteOne(data)
 	.then(result => res.send(result))
@@ -38,10 +38,10 @@ app.delete("/remove",(req,res) => {
 });
 
 app.put("/modify",(req,res) => {
-	let url = "mongodb+srv://guptaritika183:Bd9D6r6CZ1AXcEtq@cluster0.yzb9s7n.mongodb.net/?retryWrites=true&w=majority";
+	let url = "mongodb+srv://guptaritika183:fQwzWLJffZDXC3g8@cluster0.o2tyjlk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 	const client = new MongoClient(url);
 	const db = client.db("task4employeemanagement19jan24");
-	const coll = db.collection("employees");
+	const coll = db.collection("employee");
 	coll.updateOne({"_id":req.body.id}, {"$set": {"name":req.body.name,"salary":req.body.salary}})
 	.then(result => res.send(result))
 	.catch(error => res.send(error));
